@@ -10,8 +10,6 @@ import { User } from '../model/User';
 })
 export class PostagemService {
 
-  user: User = new User()
-
   constructor(private http: HttpClient) { }
   token = {
     headers: new HttpHeaders().set('Authorization', environment.token)
@@ -25,9 +23,7 @@ export class PostagemService {
   postPostagem(postagem: Postagem): Observable<Postagem> {
     return this.http.post<Postagem>('http://localhost:8080/postagens', postagem, this.token)
   }
-  getByIdUser(id: number): Observable<User>{
-    return this.http.get<User>(`http://localhost:8080/usuarios/${id}`,this.token)
-  }
+ 
   putPostagem(postagem: Postagem): Observable<Postagem>{
     return this.http.put<Postagem>('http://localhost:8080/postagens', postagem, this.token)
   }
