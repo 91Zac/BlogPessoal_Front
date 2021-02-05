@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Postagem } from 'src/app/model/Postagem';
 import { User } from 'src/app/model/User';
+import { AlertasService } from 'src/app/service/alertas.service';
 import { PostagemService } from 'src/app/service/postagem.service';
 import { TemaService } from 'src/app/service/tema.service';
 import { environment } from 'src/environments/environment.prod';
@@ -20,6 +21,7 @@ idPost: number
     private router: Router,
     private route: ActivatedRoute,
     private postagemService: PostagemService,
+    private alertas: AlertasService
   ) { }
 
   ngOnInit() {
@@ -37,7 +39,7 @@ idPost: number
   }
   apagar() {
     this.postagemService.deletePostagem(this.idPost).subscribe(()=>{
-      alert('Postagrm apagada com sucesso!!')
+      this.alertas.showAlerSuccess('Postagrm apagada com sucesso!!')
       this.router.navigate(['/inicio'])
 
     })
